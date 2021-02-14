@@ -1,9 +1,9 @@
 # FastAPI Basics
-from fastapi import FastAPI
-from typing import List, Optional
-from pydantic import BaseModel
+# from fastapi import FastAPI
+# from typing import List, Optional
+# from pydantic import BaseModel
 
-app = FastAPI()
+# app = FastAPI()
 
 
 
@@ -37,6 +37,30 @@ app = FastAPI()
 # async def add_user(status: str, user: User):
 #     return {"Status": status, **user.dict()}
 
+# template ....
+
+from fastapi import FastAPI, Request, Form
+from fastapi.templating import Jinja2Templates
+
+
+app = FastAPI()
+templates = Jinja2Templates(directory="templates/")
+
+@app.get('/')
+def read_form():
+    return 'hello world'
+
+
+@app.get("/form")
+def form_post(request: Request):
+    result = "Type a number"
+    return templates.TemplateResponse('index.html', context={'request': request, 'result': result})
+
+
+@app.post("/form")
+def form_post(request: Request, num: int = Form(...)):
+    result = num
+    return templates.TemplateResponse('index.html', context={'request': request, 'result': result})
 
 
 
