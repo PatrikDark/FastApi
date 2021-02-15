@@ -65,6 +65,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
+import requests, json
 
 class Todo(BaseModel):
     name: str
@@ -77,7 +78,17 @@ tasks = []
 
 @app.get('/')
 async def home():
-    return "Hello welcome to the Todo api"
+  
+
+    url = "https://cwm.pythonanywhere.com/api/demo/"
+
+    payload={}
+    headers = {}
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+# return "Hello welcome to the Todo api"
+    return response.json()
 
 @app.get('/todo/')
 async def all_todo():
