@@ -1,0 +1,423 @@
+{
+  "version": 4,
+  "terraform_version": "0.14.3",
+  "serial": 4,
+  "lineage": "1e88fbb9-69d4-9c97-2c2d-670537d075db",
+  "outputs": {
+    "eks_worker_arn": {
+      "value": "arn:aws:iam::384326423197:role/tcc-iac-eks-node",
+      "type": "string"
+    },
+    "presentation_subnet_ids": {
+      "value": [
+        "subnet-0af61975dd1d6f607",
+        "subnet-0d66ab4147457b91d",
+        "subnet-0d30f6262946302e2",
+        "subnet-0572c3efa3ec0fd5f"
+      ],
+      "type": [
+        "tuple",
+        [
+          "string",
+          "string",
+          "string",
+          "string"
+        ]
+      ]
+    },
+    "tcc_log_es_domain_name": {
+      "value": "tcc-iac-logging-es",
+      "type": "string"
+    },
+    "vpc_id": {
+      "value": "vpc-03b93679d2823e1cd",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_route53_zone",
+      "name": "cloud-taranawireless-public",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "caller_reference": "terraform-20210203175545254600000001",
+            "comment": "Managed by Terraform",
+            "id": "Z04698893GJSFQQ9NREK",
+            "linked_service_description": null,
+            "linked_service_principal": null,
+            "name": "tcc-iac.cloud.taranawireless.com",
+            "name_servers": [
+              "ns-5.awsdns-00.com",
+              "ns-1718.awsdns-22.co.uk",
+              "ns-1029.awsdns-00.org",
+              "ns-731.awsdns-27.net"
+            ],
+            "private_zone": false,
+            "resource_record_set_count": 4,
+            "tags": {},
+            "vpc_id": null,
+            "zone_id": "Z04698893GJSFQQ9NREK"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.ec2_ssh_key",
+      "mode": "managed",
+      "type": "aws_key_pair",
+      "name": "ssh_public_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-west-2:384326423197:key-pair/tcc-iac-ec2-ssh",
+            "fingerprint": "55:f1:bf:50:02:5c:63:6d:a9:5e:d9:c3:5c:ef:2e:5e",
+            "id": "tcc-iac-ec2-ssh",
+            "key_name": "tcc-iac-ec2-ssh",
+            "key_name_prefix": null,
+            "key_pair_id": "key-0a1273cef6fbc0d8d",
+            "public_key": "ssh-rsa /r/7UVn/Jo1tVH1jVCPe/B5UhQIflFyGWP16nsOMdQDEoEfj8NtwDF5aa7Jg2wqRhw0sZwCZRnfGWfsmvg2u5X48E2kzskd+/8MR0fCbayJRwi585McEjTNeqfdo043BufNvr/ntZtxXQd2yZmNmC2l2djmFqnuE/lWLT0QGURqVgImAWRq5x6b35eYUczqP/dU2OpVABie51ga9GvDUZtebgGBOuT5wWkIwO4PW+pGPMd17vi+dPkABIxnjlIj4nKzOUanXRzBhF+4RCYEc4jNlekC1ITmE8Vx5ISJ2VyooVjPqWuayOMt6Fo9PkHQXX77y9YrmODdZiC6iosUl2v7Qd+qMpHebXz/RjbILEDZQKIF8mn+1oyKX2qLZ3uuLXSpyHP9fRd3nzFEKPnoq3uPk+1HLoVTVah0zu+es4JhTYHhI2fHWkmRes7PZpmKIEEEw0tPml4MCHllppIt6SIswKl9YEA2QA1M32FZ0BoCc/Qn8+h+lJLhHkvPMJW3HFUiu0GdmvqjCRxYkgH6NFifzRM+Dfz8BbCc5v5Dce/XXURFRkdK7XYAlJAGZTAv4SFNXwRg6zBwp2Yq8XmYQBh56+kU6eKP/Rdjm+dUbX76SEwCbbCfolmbkVi9M4uZVEU5FDW7cHPZOC+l4xrD+kAbXDNbUbvkoszMw==",
+            "tags": {}
+          },
+          "sensitive_attributes": [],
+          "private": "==",
+          "dependencies": [
+            "module.ec2_ssh_key.tls_private_key.key"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ec2_ssh_key",
+      "mode": "managed",
+      "type": "aws_secretsmanager_secret",
+      "name": "ssh_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:secretsmanager:us-west-2:384326423197:secret:tcc-iac-ec2-ssh-OaX9bi",
+            "description": "",
+            "id": "arn:aws:secretsmanager:us-west-2:384326423197:secret:tcc-iac-ec2-ssh-OaX9bi",
+            "kms_key_id": "",
+            "name": "tcc-iac-ec2-ssh",
+            "name_prefix": null,
+            "policy": null,
+            "recovery_window_in_days": 30,
+            "rotation_enabled": false,
+            "rotation_lambda_arn": "",
+            "rotation_rules": [],
+            "tags": {}
+          },
+          "sensitive_attributes": [],
+          "private": "=="
+        }
+      ]
+    },
+    {
+      "module": "module.ec2_ssh_key",
+      "mode": "managed",
+      "type": "aws_secretsmanager_secret_version",
+      "name": "ssh_key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:secretsmanager:us-west-2:384326423197:secret:tcc-iac-ec2-ssh-OaX9bi",
+            "id": "arn:aws:secretsmanager:us-west-2:384326423197:secret:tcc-iac-ec2-ssh-OaX9bi|6185C31C-38B6-4FA8-AE5B-F661EA259E43",
+            "secret_binary": "",
+            "secret_id": "arn:aws:secretsmanager:us-west-2:384326423197:secret:tcc-iac-ec2-ssh-OaX9bi",
+            "secret_string": "{\"private_key\":\"-----BEGIN RSA PRIVATE KEY-----AWwnOb+Q3Hv111ERUZHSu12AJSQBmUwL+EhTV8EYOswcKd\\nmKvF5mEAYeevpFOnij/0XY5vnVG1++khMAm2wn6JZm5FYvTOLmVRFORQ1u3Bz2Tg\\nvpeMaw/pAG1wzW1G75KLMzMCAwEAAQ==\\n-----END PUBLIC KEY-----\\n\"}",
+            "version_id": "6185C31C-38B6-4FA8-AE5B-F661EA259E43",
+            "version_stages": [
+              "AWSCURRENT"
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "==",
+          "dependencies": [
+            "module.ec2_ssh_key.aws_secretsmanager_secret.ssh_key",
+            "module.ec2_ssh_key.tls_private_key.key"
+          ]
+        }
+      ]
+    },
+    {
+      "module": "module.ec2_ssh_key",
+      "mode": "managed",
+      "type": "tls_private_key",
+      "name": "key",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tls\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "algorithm": "RSA",
+            "ecdsa_curve": "P224",
+            "id": "c67a95d0ebad5213e8bf813f5394fe8ff9a7c40b",
+            "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----\nEND RSA PRIVATE KEY-----\n",
+            "public_key_fingerprint_md5": "dd:e5:ff:b0:a7:ea:bb:61:e4:b2:bc:8b:03:77:47:1f",
+            "public_key_openssh": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQ1HLoVTVah0zu+es4JhTYHhI2fHWkmRes7PZpmKIEEEw0tPml4MCHllppIt6SIswKl9YEA2QA1M32FZ0BoCc/Qn8+h+lJLhHkvPMJW3HFUiu0GdmvqjCRxYkgH6NFifzRM+Dfz8BbCc5v5Dce/XXURFRkdK7XYAlJAGZTAv4SFNXwRg6zBwp2Yq8XmYQBh56+kU6eKP/Rdjm+dUbX76SEwCbbCfolmbkVi9M4uZVEU5FDW7cHPZOC+l4xrD+kAbXDNbUbvkoszMw==\n",
+            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIICIjJyszlGp10cwYR\nfuEQmBHOIzZXpAtSE5hPFceSEidlcqKFYz6lrmsjjLehaPT5B0F1++8vWK5jg3WY\nguoqLFJdr+0HfqjKR3m18/0Y2yCxA2UCiBfJp/taMil9qi2d7ri10qchz/X0Xd58\nxRCj56Kt7j5PtRy6FU1WodM7vnrOCYU2B4SNnx1pJkXrOz2aZiiBBBMNLT5peDAh\n5ZaaSLekiLMCpfWBANkANTN9hWdAaAnP0J/PofpSS4R5LzzCVtxxVIrtBnZr6owk\ncWJIB+jRYn80TPg38/AWwnOb+Q3Hv111ERUZHSu12AJSQBmUwL+EhTV8EYOswcKd\nmKvF5mEAYeevpFOnij/0XY5vnVG1++khMAm2wn6JZm5FYvTOLmVRFORQ1u3Bz2Tg\nvpeMaw/pAG1wzW1G75KLMzMCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+            "rsa_bits": 4096
+          },
+          "sensitive_attributes": [],
+          "private": "=="
+        }
+      ]
+    },
+    {
+      "module": "module.latest_ami",
+      "mode": "data",
+      "type": "aws_ami",
+      "name": "amazon_linux",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "architecture": "x86_64",
+            "arn": "arn:aws:ec2:us-west-2::image/ami-973949ef",
+            "block_device_mappings": [
+              {
+                "device_name": "/dev/xvda",
+                "ebs": {
+                  "delete_on_termination": "true",
+                  "encrypted": "false",
+                  "iops": "0",
+                  "snapshot_id": "snap-005c9f1654805e5a7",
+                  "throughput": "0",
+                  "volume_size": "8",
+                  "volume_type": "standard"
+                },
+                "no_device": "",
+                "virtual_name": ""
+              }
+            ],
+            "creation_date": "2018-05-10T00:12:53.000Z",
+            "description": "Amazon Linux 2 LTS Candidate AMI 2017.12.0.20180509 x86_64 HVM EBS",
+            "executable_users": null,
+            "filter": [
+              {
+                "name": "name",
+                "values": [
+                  "amzn2-ami-hvm-????.??.?.????????-x86_64-*"
+                ]
+              },
+              {
+                "name": "root-device-type",
+                "values": [
+                  "ebs"
+                ]
+              },
+              {
+                "name": "virtualization-type",
+                "values": [
+                  "hvm"
+                ]
+              }
+            ],
+            "hypervisor": "xen",
+            "id": "ami-973949ef",
+            "image_id": "ami-973949ef",
+            "image_location": "amazon/amzn2-ami-hvm-2017.12.0.20180509-x86_64-ebs",
+            "image_owner_alias": "amazon",
+            "image_type": "machine",
+            "kernel_id": null,
+            "most_recent": true,
+            "name": "amzn2-ami-hvm-2017.12.0.20180509-x86_64-ebs",
+            "name_regex": null,
+            "owner_id": "137112412989",
+            "owners": [
+              "amazon"
+            ],
+            "platform": null,
+            "product_codes": [],
+            "public": true,
+            "ramdisk_id": null,
+            "root_device_name": "/dev/xvda",
+            "root_device_type": "ebs",
+            "root_snapshot_id": "snap-005c9f1654805e5a7",
+            "sriov_net_support": "simple",
+            "state": "available",
+            "state_reason": {
+              "code": "UNSET",
+              "message": "UNSET"
+            },
+            "tags": {},
+            "virtualization_type": "hvm"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.latest_ami",
+      "mode": "data",
+      "type": "aws_ami",
+      "name": "ubuntu18",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "architecture": "x86_64",
+            "arn": "arn:aws:ec2:us-west-2::image/ami-025102f49d03bec05",
+            "block_device_mappings": [
+              {
+                "device_name": "/dev/sda1",
+                "ebs": {
+                  "delete_on_termination": "true",
+                  "encrypted": "false",
+                  "iops": "0",
+                  "snapshot_id": "snap-0f998a23e3e767070",
+                  "throughput": "0",
+                  "volume_size": "8",
+                  "volume_type": "gp2"
+                },
+                "no_device": "",
+                "virtual_name": ""
+              },
+              {
+                "device_name": "/dev/sdb",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral0"
+              },
+              {
+                "device_name": "/dev/sdc",
+                "ebs": {},
+                "no_device": "",
+                "virtual_name": "ephemeral1"
+              }
+            ],
+            "creation_date": "2021-01-28T19:55:07.000Z",
+            "description": "Canonical, Ubuntu, 18.04 LTS, amd64 bionic image build on 2021-01-28",
+            "executable_users": null,
+            "filter": [
+              {
+                "name": "name",
+                "values": [
+                  "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"
+                ]
+              }
+            ],
+            "hypervisor": "xen",
+            "id": "ami-025102f49d03bec05",
+            "image_id": "ami-025102f49d03bec05",
+            "image_location": "099720109477/ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210128",
+            "image_owner_alias": null,
+            "image_type": "machine",
+            "kernel_id": null,
+            "most_recent": true,
+            "name": "ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-20210128",
+            "name_regex": null,
+            "owner_id": "099720109477",
+            "owners": [
+              "099720109477"
+            ],
+            "platform": null,
+            "product_codes": [],
+            "public": true,
+            "ramdisk_id": null,
+            "root_device_name": "/dev/sda1",
+            "root_device_type": "ebs",
+            "root_snapshot_id": "snap-0f998a23e3e767070",
+            "sriov_net_support": "simple",
+            "state": "available",
+            "state_reason": {
+              "code": "UNSET",
+              "message": "UNSET"
+            },
+            "tags": {},
+            "virtualization_type": "hvm"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.tcc",
+      "mode": "data",
+      "type": "aws_caller_identity",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "account_id": "384326423197",
+            "arn": "arn:aws:sts::384326423197:assumed-role/IAM-Role/1612950866061792347",
+            "id": "384326423197",
+            "user_id": "AROAIO4PY2LJA4U3GNUMG:1612950866061792347"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.tcc",
+      "mode": "data",
+      "type": "aws_region",
+      "name": "current",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "description": "US West (Oregon)",
+            "endpoint": "ec2.us-west-2.amazonaws.com",
+            "id": "us-west-2",
+            "name": "us-west-2"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "module": "module.tcc",
+      "mode": "data",
+      "type": "aws_subnet",
+      "name": "openvpn",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-west-2:384326423197:subnet/subnet-0572c3efa3ec0fd5f",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-west-2d",
+            "availability_zone_id": "usw2-az4",
+            "cidr_block": "172.28.140.0/22",
+            "customer_owned_ipv4_pool": "",
+            "default_for_az": false,
+            "filter": null,
+            "id": "subnet-0572c3efa3ec0fd5f",
+            "ipv6_cidr_block": null,
+            "ipv6_cidr_block_association_id": null,
+            "map_customer_owned_ip_on_launch": false,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "384326423197",
+            "state": "available",
+            "tags": {
+              "Name": "tcc-iac-presentation-4",
+              "kubernetes.io/cluster/tcc-iac-eks-cluster": "shared",
+              "kubernetes.io/role/elb": "1"
+            },
+            "vpc_id": "vpc-03b93679d2823e1cd"
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    }
+	]
+	}

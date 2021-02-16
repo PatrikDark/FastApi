@@ -77,18 +77,33 @@ app = FastAPI(title="Todo API")
 tasks = []
 
 @app.get('/')
-async def home():
-  
+def home():
+      # url = "https://cwm.pythonanywhere.com/api/demo/"
 
-    url = "https://cwm.pythonanywhere.com/api/demo/"
+    # payload={}
+    # headers = {}
 
-    payload={}
-    headers = {}
-
-    response = requests.request("GET", url, headers=headers, data=payload)
+    # response = requests.request("GET", url, headers=headers, data=payload)
 
 # return "Hello welcome to the Todo api"
-    return response.json()
+    # return response.json()
+
+    with open('terraform.json', 'r') as f:
+        data = json.load(f)
+    return data
+    # context = [
+    #     {
+    #     "Name": "Suman"
+    #     },
+    #     {
+    #     "Name": "Sangita"
+    #     },
+    #     {
+    #     "Name": "Soma"
+    #     },
+    # ]
+    # return context
+
 
 @app.get('/todo/')
 async def all_todo():
